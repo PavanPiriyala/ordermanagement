@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name = "shipment")
+@Table(name = "shipments")
 public class Shipment {
 
     @Id
@@ -17,7 +17,7 @@ public class Shipment {
     private Integer shipmentId;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "order_id")
     private Order order;
 
     @Column(name = "shipment_status")

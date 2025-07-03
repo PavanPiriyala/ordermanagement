@@ -13,11 +13,11 @@ public class ShipmentItem {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "shipment_id")
     private Shipment shipment;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "order_item_id")
     private OrderItem orderItem;
 
     @Column(name = "item_status")

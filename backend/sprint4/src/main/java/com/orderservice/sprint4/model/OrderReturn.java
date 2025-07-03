@@ -16,7 +16,7 @@ public class OrderReturn {
     private Integer orderReturnId;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "order_id")
     private Order order;
 
     @Column(name = "return_date")

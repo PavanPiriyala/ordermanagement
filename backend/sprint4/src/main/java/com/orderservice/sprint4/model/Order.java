@@ -29,6 +29,9 @@ public class Order {
     @Column(name = "order_status", length = 50)
     private String orderStatus;
 
+    @Column(name = "promo_discount", precision = 10, scale = 2)
+    private BigDecimal promoDiscount;
+
     @Column(name = "order_total", precision = 10, scale = 2)
     private BigDecimal orderTotal;
 
