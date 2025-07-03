@@ -1,20 +1,11 @@
-//package com.orderservice.sprint4.service;
-//
-//
-//import com.orderservice.sprint4.dto.OrderResponseDTO;
-//
-//import java.util.List;
-//
-//public interface OrderService {
-//    List<OrderResponseDTO> getOrdersByRange(String range);
-//}
-//
 package com.orderservice.sprint4.service;
 
 import com.orderservice.sprint4.dto.OrderSummaryDTO;
-
-import java.util.List;
+import com.orderservice.sprint4.dto.OrderDetailsRequestDTO;
+import com.orderservice.sprint4.dto.OrderDetailsResponseDTO;
 
 public interface OrderService {
+    String createOrderTransaction(OrderDetailsRequestDTO dto);
+    OrderDetailsResponseDTO getOrderDetails(Integer orderId);
     List<OrderSummaryDTO> getOrderHistoryByMonths(int months);
 }
