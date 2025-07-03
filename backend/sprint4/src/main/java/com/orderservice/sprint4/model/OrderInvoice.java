@@ -17,7 +17,7 @@ public class OrderInvoice {
     private Integer invoiceId;
 
     @OneToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "order_id")
     private Order order;
 
     @Column(name = "invoice_number")
