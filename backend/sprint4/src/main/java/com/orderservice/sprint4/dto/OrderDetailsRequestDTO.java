@@ -14,4 +14,60 @@ public class OrderDetailsRequestDTO {
     private List<OrderItemRequestDTO> orderItemRequestDTOS;
     private String paymentMode;
 
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public LocalDateTime getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(LocalDateTime orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public BigDecimal getPromoDiscount() {
+        return promoDiscount;
+    }
+
+    public void setPromoDiscount(BigDecimal promoDiscount) {
+        this.promoDiscount = promoDiscount;
+    }
+
+    public BigDecimal getOrderTotal() {
+        return orderTotal;
+    }
+
+    public void setOrderTotal(BigDecimal orderTotal) {
+        this.orderTotal = orderTotal;
+    }
+
+    public List<OrderItemRequestDTO> getOrderItemRequestDTOS() {
+        return orderItemRequestDTOS;
+    }
+
+    public void setOrderItemRequestDTOS(List<OrderItemRequestDTO> orderItemRequestDTOS) {
+        this.orderItemRequestDTOS = orderItemRequestDTOS;
+    }
+
+    public String getPaymentMode() {
+        return paymentMode;
+    }
+
+    public void setPaymentMode(String paymentMode) {
+        this.paymentMode = paymentMode;
+    }
 }
