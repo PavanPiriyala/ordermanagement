@@ -11,9 +11,11 @@ import java.time.LocalDateTime;
 public class OrderResponseDTO {
     private Integer orderId;
     private Integer userId;
-    private String orderStatus;
-    private BigDecimal orderTotal;
     private LocalDateTime orderDate;
+    private String orderStatus;
+    private BigDecimal promoDiscount;
+    private BigDecimal orderTotal;
+
 
     public static OrderResponseDTO fromEntity(Order order) {
         OrderResponseDTO dto = new OrderResponseDTO();
@@ -22,6 +24,7 @@ public class OrderResponseDTO {
         dto.setOrderStatus(order.getOrderStatus());
         dto.setOrderTotal(order.getOrderTotal());
         dto.setOrderDate(order.getOrderDate());
+        dto.setPromoDiscount(order.getPromoDiscount());
         return dto;
     }
 }
