@@ -2,6 +2,7 @@ package com.orderservice.sprint4.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.antlr.v4.runtime.misc.NotNull;
 
 import java.math.BigDecimal;
 
@@ -11,13 +12,19 @@ import java.math.BigDecimal;
 public class OrderItem {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer orderItemId;
 
-    @Column(name = "order_iD")
-    private Integer orderId;
+//    @Column(name = "order_id")
+//    private Integer orderId;
 
-    @Column(name = "product_iD")
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private Order order;
+
+    @NotNull
+    @Column(name = "product_id")
     private Integer productId;
 
     @Column(name = "sku", length = 50)
@@ -38,12 +45,16 @@ public class OrderItem {
     @Column(name = "size", length = 20)
     private String size;
 
-    @Column(name = "color", length = 30)
-    private String color;
 
     @Column(name = "status", length = 50)
     private String status;
 
+    @NotNull
     @Column(name = "seller_id")
     private Integer sellerId;
+
+
+
+
+
 }
