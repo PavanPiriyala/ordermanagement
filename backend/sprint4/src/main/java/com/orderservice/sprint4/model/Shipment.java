@@ -31,6 +31,63 @@ public class Shipment {
 
     @OneToMany(mappedBy = "shipment")
     private List<ShipmentItem> shipmentItems;
+
+
+    public Integer getShipmentId() {
+        return shipmentId;
+    }
+
+    public void setShipmentId(Integer shipmentId) {
+        this.shipmentId = shipmentId;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public String getShipmentStatus() {
+        return shipmentStatus;
+    }
+
+    public void setShipmentStatus(String shipmentStatus) {
+        this.shipmentStatus = shipmentStatus;
+    }
+
+    public String getShipmentTrackingId() {
+        return shipmentTrackingId;
+    }
+
+    public void setShipmentTrackingId(String shipmentTrackingId) {
+        this.shipmentTrackingId = shipmentTrackingId;
+    }
+
+    public LocalDateTime getShippedDate() {
+        return shippedDate;
+    }
+
+    public void setShippedDate(LocalDateTime shippedDate) {
+        this.shippedDate = shippedDate;
+    }
+
+    public LocalDateTime getDeliveredDate() {
+        return deliveredDate;
+    }
+
+    public void setDeliveredDate(LocalDateTime deliveredDate) {
+        this.deliveredDate = deliveredDate;
+    }
+
+    public List<ShipmentItem> getShipmentItems() {
+        return shipmentItems;
+    }
+
+    public void setShipmentItems(List<ShipmentItem> shipmentItems) {
+        this.shipmentItems = shipmentItems;
+    }
 }
 
 
