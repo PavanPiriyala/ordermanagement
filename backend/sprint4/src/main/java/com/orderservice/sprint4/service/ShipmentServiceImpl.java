@@ -1,0 +1,47 @@
+package com.orderservice.sprint4.service;
+
+import com.orderservice.sprint4.dao.ShipmentItemDAO;
+import com.orderservice.sprint4.dto.InvoiceResponseDTO;
+import com.orderservice.sprint4.dto.OrderDetailsResponseDTO;
+import com.orderservice.sprint4.dto.ShipmentDetailsResponseDTO;
+import com.orderservice.sprint4.model.Order;
+import com.orderservice.sprint4.model.OrderInvoice;
+import com.orderservice.sprint4.repository.OrderInvoiceRepository;
+import com.orderservice.sprint4.repository.OrderRepository;
+import com.orderservice.sprint4.repository.custom.CustomShipmentItemRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class ShipmentServiceImpl implements ShipmentService{
+
+    @Autowired
+    private OrderRepository orderRepository;
+
+    @Autowired
+    private OrderInvoiceRepository orderInvoiceRepository;
+
+    @Autowired
+    private CustomShipmentItemRepository customShipmentItemRepository;
+
+    @Override
+    public ShipmentDetailsResponseDTO getShipmentItemsByOrderId(Integer orderId) {
+
+        List<ShipmentItemDAO> items = customShipmentItemRepository.getShipmentItemsByOrderId(orderId);
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new RuntimeException("Order not found"));
+        InvoiceResponseDTO invoiceResponseDTO = orderInvoiceRepository.getInvoiceByOrderId(orderId);
+
+//        Write Exceptions for above three calls
+
+        return ShipmentDetailsResponseDTO.builder()
+                .itmes(items)
+                .orderId(order.getOrderId())
+                .orderDate(order.getOrderDate())
+                .orderStatus(order.getOrderStatus())
+                .paymentMode(invoiceResponseDTO.getPaymentMode())
+                .build();
+    }
+}

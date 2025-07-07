@@ -17,9 +17,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import java.lang.reflect.Method;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -157,6 +159,13 @@ public class OrderServiceImpl implements OrderService{
                 .orElseThrow(() -> new RuntimeException("Order not found"));
 
         OrderDetailsResponseDTO response = new OrderDetailsResponseDTO();
+
+
+        Arrays.stream(response.getClass().getMethods())
+                .map(Method::getName)
+                .distinct()
+                .forEach(System.out::println);
+
         response.setOrderId(order.getOrderId());
         response.setUserId(order.getUserId());
         response.setOrderDate(order.getOrderDate());
