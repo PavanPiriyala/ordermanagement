@@ -3,6 +3,8 @@ package com.orderservice.sprint4.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Data
 @Table(name = "shipment_items")
@@ -12,16 +14,50 @@ public class ShipmentItem {
     @Column(name = "id")
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "shipment_id")
-    private Shipment shipment;
+//    @ManyToOne
+//    @JoinColumn(name = "shipment_id")
+//    private Shipment shipment;
 
     @ManyToOne
     @JoinColumn(name = "order_item_id")
     private OrderItem orderItem;
 
+    @Column(name = "item_tracking_id")
+    private String itemTrackingId;
+
+
     @Column(name = "item_status")
     private String itemStatus;
+
+    @Column(name = "shipment_date")
+    private LocalDateTime shipmentDate;
+
+    @Column(name = "delivered_date")
+    private LocalDateTime deliveredDate;
+
+    public String getItemTrackingId() {
+        return itemTrackingId;
+    }
+
+    public void setItemTrackingId(String itemTrackingId) {
+        this.itemTrackingId = itemTrackingId;
+    }
+
+    public LocalDateTime getShipmentDate() {
+        return shipmentDate;
+    }
+
+    public void setShipmentDate(LocalDateTime shipmentDate) {
+        this.shipmentDate = shipmentDate;
+    }
+
+    public LocalDateTime getDeliveredDate() {
+        return deliveredDate;
+    }
+
+    public void setDeliveredDate(LocalDateTime deliveredDate) {
+        this.deliveredDate = deliveredDate;
+    }
 
     public Integer getId() {
         return id;
@@ -31,13 +67,13 @@ public class ShipmentItem {
         this.id = id;
     }
 
-    public Shipment getShipment() {
-        return shipment;
-    }
-
-    public void setShipment(Shipment shipment) {
-        this.shipment = shipment;
-    }
+//    public Shipment getShipment() {
+//        return shipment;
+//    }
+//
+//    public void setShipment(Shipment shipment) {
+//        this.shipment = shipment;
+//    }
 
     public OrderItem getOrderItem() {
         return orderItem;
@@ -57,11 +93,14 @@ public class ShipmentItem {
 }
 
 
+//
+//
 //CREATE TABLE shipment_items (
-//    id INT PRIMARY KEY IDENTITY,
-//    shipment_id INT,
-//    order_item_id INT,
-//    item_status VARCHAR(50),           -- e.g., "In Transit", "Delivered"
-//    FOREIGN KEY (shipment_id) REFERENCES shipments(id),
-//    FOREIGN KEY (order_item_id) REFERENCES order_items(id)
-//);
+//        id INT PRIMARY KEY IDENTITY,
+//        order_item_id INT,
+//        item_tracking_id VARCHAR(100),
+//item_status VARCHAR(50),           -- e.g., "In Transit", "Delivered"
+//shipment_date DATETIME,
+//delivered_date DATETIME,
+//FOREIGN KEY (order_item_id) REFERENCES order_items(id)
+//        );
