@@ -4,6 +4,9 @@ import com.orderservice.sprint4.dao.ShipmentItemDAO;
 import com.orderservice.sprint4.dto.InvoiceResponseDTO;
 import com.orderservice.sprint4.dto.OrderDetailsResponseDTO;
 import com.orderservice.sprint4.dto.ShipmentDetailsResponseDTO;
+import com.orderservice.sprint4.exception.InvoiceNotFoundException;
+import com.orderservice.sprint4.exception.OrderNotFoundException;
+import com.orderservice.sprint4.exception.ShipmentItemsNotFoundException;
 import com.orderservice.sprint4.model.Order;
 import com.orderservice.sprint4.model.OrderInvoice;
 import com.orderservice.sprint4.repository.OrderInvoiceRepository;
@@ -29,12 +32,20 @@ public class ShipmentServiceImpl implements ShipmentService{
     @Override
     public ShipmentDetailsResponseDTO getShipmentItemsByOrderId(Integer orderId) {
 
-        List<ShipmentItemDAO> items = customShipmentItemRepository.getShipmentItemsByOrderId(orderId);
         Order order = orderRepository.findById(orderId)
-                .orElseThrow(() -> new RuntimeException("Order not found"));
-        InvoiceResponseDTO invoiceResponseDTO = orderInvoiceRepository.getInvoiceByOrderId(orderId);
+                .orElseThrow(() -> new OrderNotFoundException(orderId));
 
-//        Write Exceptions for above three calls
+        List<ShipmentItemDAO> items = customShipmentItemRepository.getShipmentItemsByOrderId(orderId);
+        if (items == null || items.isEmpty()) {
+            throw new ShipmentItemsNotFoundException(orderId);
+        }
+
+        InvoiceResponseDTO invoiceResponseDTO = orderInvoiceRepository.getInvoiceByOrderId(orderId);
+        if (invoiceResponseDTO == null) {
+            throw new InvoiceNotFoundException(orderId);
+        }
+
+//        //Write Exceptions for above three calls
 
         return ShipmentDetailsResponseDTO.builder()
                 .itmes(items)
