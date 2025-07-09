@@ -1,4 +1,4 @@
-    package com.orderservice.sprint4.dto;
+package com.orderservice.sprint4.dto;
 
     import com.orderservice.sprint4.model.enmus.OrderStatus;
     import lombok.Builder;
