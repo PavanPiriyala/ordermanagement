@@ -47,12 +47,11 @@ public class ShipmentServiceImpl implements ShipmentService{
 
 //        //Write Exceptions for above three calls
 
-        return ShipmentDetailsResponseDTO.builder()
-                .itmes(items)
-                .orderId(order.getOrderId())
-                .orderDate(order.getOrderDate())
-                .orderStatus(order.getOrderStatus())
-                .paymentMode(invoiceResponseDTO.getPaymentMode())
-                .build();
+        ShipmentDetailsResponseDTO dto = new ShipmentDetailsResponseDTO();
+        dto.setOrderId(order.getOrderId());
+        dto.setOrderDate(order.getOrderDate());
+        dto.setOrderStatus(order.getOrderStatus());
+        dto.setPaymentMode(invoiceResponseDTO.getPaymentMode());
+        return dto;
     }
 }
