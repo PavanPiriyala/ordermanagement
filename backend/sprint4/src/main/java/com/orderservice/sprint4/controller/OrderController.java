@@ -6,16 +6,14 @@ import java.util.List;
 =======
 import com.orderservice.sprint4.dto.OrderDetailsRequestDTO;
 import com.orderservice.sprint4.dto.OrderDetailsResponseDTO;
+import com.orderservice.sprint4.dto.OrderSummaryDTO;
 import com.orderservice.sprint4.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.orderservice.sprint4.dto.OrderSummaryDTO;
-import com.orderservice.sprint4.service.OrderService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequestMapping("/orders")
@@ -41,6 +39,16 @@ public class OrderController {
             OrderDetailsResponseDTO orderDetails = orderService.getOrderDetails(orderId);
             return ResponseEntity.ok(orderDetails);
         } catch (RuntimeException ex) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
+    @GetMapping("/list/{month}")
+    public ResponseEntity<?> getOrdersList(@PathVariable Integer month){
+        try{
+            List<OrderSummaryDTO> orders = orderService.getOrders(month);
+            return ResponseEntity.ok(orders);
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
